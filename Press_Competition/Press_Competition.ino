@@ -1,12 +1,20 @@
+
 #define DISPLAY_MODE D2
-bool dispalyMode;
+bool isDispalyMode;
 void setup(){
+    Serial.begin(9600);
     pinMode(DISPLAY_MODE, INPUT_PULLUP);
-    dispalyMode = (digitalRead(DISPLAY_MODE)) ? true : false;
-    if(dispalyMode)
+    isDispalyMode = (digitalRead(DISPLAY_MODE) == HIGH) ? true : false;
+    if(isDispalyMode){
+    }else{
+    }
         BTN_setup();
 }
 void loop(){
-    if(dispalyMode)
+    if(isDispalyMode){
+
+    }
+    else{
+    }
         BTN_loop();
 }
