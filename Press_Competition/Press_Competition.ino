@@ -7,14 +7,14 @@ void setup(){
     isDispalyMode = (digitalRead(DISPLAY_MODE) == HIGH) ? true : false;
     if(isDispalyMode){
     }else{
+    BTN_setup();
     }
-        BTN_setup();
 }
 void loop(){
     if(isDispalyMode){
 
     }
     else{
-    }
         BTN_loop();
+    }
 }

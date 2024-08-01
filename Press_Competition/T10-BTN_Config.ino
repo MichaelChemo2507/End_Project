@@ -11,13 +11,12 @@ void BTN_setup(){
 }
 void BTN_loop(){
     int correntBTNval = digitalRead(BTN);
-    if((correntBTNval == LOW && lastBTNval == HIGH) && lastTimePress > 50){
+    if((correntBTNval == LOW )&& (lastBTNval == HIGH) && (millis() - lastTimePress  > 50)){
         lastTimePress = millis();
-        lastBTNval = correntBTNval;
-        Serial.println("press");
-    }else if(correntBTNval == HIGH && lastBTNval == LOW){
-        lastBTNval = correntBTNval;
-        releseTime = millis();
-        Serial.println("relese");
+    }else if((correntBTNval == HIGH )&& (lastBTNval == LOW) && (millis() - lastTimePress > 5)){
+        Serial.print("press time => ");
+        Serial.println(millis()-lastTimePress);
+        lastTimePress = millis();
     }
+    lastBTNval = correntBTNval;
 }
