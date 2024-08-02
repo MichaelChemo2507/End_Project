@@ -8,8 +8,9 @@ void setup(){
     if(isDispalyMode){
         
     }else{
-    BTN_setup();
+        BTN_setup();
     }
+        LED_setup();
 }
 void loop(){
     if(isDispalyMode){
@@ -17,5 +18,6 @@ void loop(){
     }
     else{
         BTN_loop();
+        LED_loop();
     }
 }

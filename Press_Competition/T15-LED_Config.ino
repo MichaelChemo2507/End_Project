@@ -1,6 +1,6 @@
-#define PIN_LED_R D5
+#define PIN_LED_R D7
 #define PIN_LED_G D6
-#define PIN_LED_B D7
+#define PIN_LED_B D5
 
 #define NEW_RECORD 20
 #define FAILURE 30
@@ -17,8 +17,7 @@ void LED_loop(){
     
 }
 void Update_status(){
-  switch (playerRollStatus)
-  {
+  switch (playerRollStatus) {
   case NEW_RECORD:
     LED_On(0,255,255);
     break;
@@ -26,11 +25,10 @@ void Update_status(){
   case FAILURE:
     LED_On(255,191,0);
     break;
-  
-  case REDY_TO_PLAY:
+    
+    default:
     LED_Off();
     break;
-  
   }
 }
 void LED_On(int Red, int Green, int Blue) {
