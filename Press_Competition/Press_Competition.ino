@@ -6,6 +6,7 @@ void setup(){
     pinMode(DISPLAY_MODE, INPUT_PULLUP);
     isDispalyMode = (digitalRead(DISPLAY_MODE) == HIGH) ? true : false;
     if(isDispalyMode){
+        
     }else{
     BTN_setup();
     }
