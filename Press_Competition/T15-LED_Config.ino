@@ -1,6 +1,6 @@
-#define PIN_LED_R D1
-#define PIN_LED_G D2
-#define PIN_LED_B D3
+#define PIN_LED_R D5
+#define PIN_LED_G D6
+#define PIN_LED_B D7
 
 #define NEW_RECORD 20
 #define FAILURE 30
