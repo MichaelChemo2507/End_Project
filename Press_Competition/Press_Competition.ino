@@ -6,15 +6,18 @@ void setup(){
     pinMode(DISPLAY_MODE, INPUT_PULLUP);
     isDispalyMode = (digitalRead(DISPLAY_MODE) == HIGH) ? true : false;
     if(isDispalyMode){
+        
     }else{
-    BTN_setup();
     }
+        BTN_setup();
+        LED_setup();
 }
 void loop(){
     if(isDispalyMode){
 
     }
     else{
-        BTN_loop();
     }
+        BTN_loop();
+        LED_loop();
 }
