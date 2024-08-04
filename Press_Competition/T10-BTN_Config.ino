@@ -1,3 +1,4 @@
+#include "T26-History_Results.h"
 #define BTN D4
 
 ResultData* resultsHistory[10];
