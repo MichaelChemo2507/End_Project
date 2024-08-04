@@ -1,5 +1,7 @@
 #define BTN D4
 
+unsigned long resultsHistory[10]; 
+
 int lastBTNval;
 unsigned long lastTimePress;
 unsigned long releaseTime;
@@ -34,4 +36,7 @@ void Check_Time(unsigned long time){
 }
 bool Compare_Data(unsigned long time,unsigned long bestResult){
     return (time < bestResult) ? true : false;
+}
+void Add_To_Press_Results(unsigned long time){
+
 }
