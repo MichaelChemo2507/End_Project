@@ -9,8 +9,9 @@ void setup(){
         
     }else{
     }
-        BTN_setup();
-        LED_setup();
+    wifiClient_Setup();
+    BTN_setup();
+    LED_setup();
 }
 void loop(){
     if(isDispalyMode){
