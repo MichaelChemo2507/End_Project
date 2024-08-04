@@ -1,6 +1,8 @@
+#include "T26-History_Results.h"
 #define BTN D4
 
-unsigned long resultsHistory[10]; 
+ResultData* resultsHistory[10];
+int cntToHistoryResults = 0;
 
 int lastBTNval;
 unsigned long lastTimePress;
@@ -24,19 +26,12 @@ void BTN_loop(){
     lastBTNval = correntBTNval;
 }
 
-void Check_Time(unsigned long time){
-    unsigned long bestResult = Get_Data();
-    bool newRecord = Compare_Data(time,bestResult);
-    if(newRecord){
-        playerRollStatus = NEW_RECORD;
-        Update_Data(time);
-    }else
-        playerRollStatus = FAILURE;
-    Add_To_Press_Results(time);
-}
+
 bool Compare_Data(unsigned long time,unsigned long bestResult){
     return (time < bestResult) ? true : false;
 }
-void Add_To_Press_Results(unsigned long time){
-
+void Add_To_Press_Results(unsigned long time,bool newRecord){
+    delete resultsHistory[(cntToHistoryResults) % 10]; 
+    resultsHistory[(cntToHistoryResults) % 10] = new ResultData(cntToHistoryResults, time, newRecord);
+    cntToHistoryResults++;
 }
