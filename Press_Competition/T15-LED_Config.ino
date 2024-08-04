@@ -14,7 +14,7 @@ void LED_setup(){
   Update_status();
 }
 void LED_loop(){
-    
+  Update_status();
 }
 void Update_status(){
   switch (playerRollStatus) {
