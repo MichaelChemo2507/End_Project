@@ -48,5 +48,5 @@ void Check_Time(unsigned long time){
         Update_Data(time);
     }else
         playerRollStatus = FAILURE;
-    Add_To_Press_Results(time);
+    Add_To_Press_Results(time,newRecord);
 }
