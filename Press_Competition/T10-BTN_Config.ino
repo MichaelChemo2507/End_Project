@@ -1,5 +1,7 @@
 #define BTN D4
 
+unsigned long resultsHistory[10]; 
+
 int lastBTNval;
 unsigned long lastTimePress;
 unsigned long releaseTime;
@@ -23,11 +25,18 @@ void BTN_loop(){
 }
 
 void Check_Time(unsigned long time){
-    bool newRecord = Get_Data(time);
+    unsigned long bestResult = Get_Data();
+    bool newRecord = Compare_Data(time,bestResult);
     if(newRecord){
         playerRollStatus = NEW_RECORD;
         Update_Data(time);
     }else
         playerRollStatus = FAILURE;
     Add_To_Press_Results(time);
+}
+bool Compare_Data(unsigned long time,unsigned long bestResult){
+    return (time < bestResult) ? true : false;
+}
+void Add_To_Press_Results(unsigned long time){
+
 }
