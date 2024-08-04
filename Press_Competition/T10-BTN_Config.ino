@@ -1,6 +1,7 @@
 #define BTN D4
 
-unsigned long resultsHistory[10]; 
+unsigned long resultsHistory[10];
+int cntToHistoryResults = 0;
 
 int lastBTNval;
 unsigned long lastTimePress;
@@ -29,5 +30,6 @@ bool Compare_Data(unsigned long time,unsigned long bestResult){
     return (time < bestResult) ? true : false;
 }
 void Add_To_Press_Results(unsigned long time){
-
+    cntToHistoryResults = (cntToHistoryResults < 10) ? cntToHistoryResults : 0;
+    resultsHistory[cntToHistoryResults++] = time;
 }

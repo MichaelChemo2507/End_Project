@@ -11,7 +11,6 @@ void LED_setup(){
   pinMode(PIN_LED_R, OUTPUT);
   pinMode(PIN_LED_G, OUTPUT);
   pinMode(PIN_LED_B, OUTPUT);
-  Update_status();
 }
 void LED_loop(){
   Update_status();
