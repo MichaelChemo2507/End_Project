@@ -9,17 +9,17 @@ const char* pswd = "87654321";
 
   WiFiClient client;
   int server_port = 80;//http
+  unsigned long restartRecord = 5000;
 
 void wifiClient_Setup() {
-  unsigned long restartRecord = 5000;
   Serial.println("wifiSetup");
   WiFi.begin(ssid,pswd);
     while (WiFi.status() != WL_CONNECTED) {
         Serial.println("trying ...");
         delay(100);
     }
+  Update_Data(restartRecord);
     Serial.println("Connected to network");
-    Update_Data(restartRecord);
 }
 
 unsigned long Get_Data() {

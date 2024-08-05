@@ -3,12 +3,12 @@
 
 IPAddress apIP(55, 55, 55, 55);
 
-const char* ssidServer = "Michael WiFi";
-
+const char *ssidServer = "Michael WiFi";
 
 ESP8266WebServer server(80);
 
-void wifi_Setup() {
+void wifiServer_Setup()
+{
   WiFi.mode(WIFI_AP_STA);
   WiFi.softAPConfig(apIP, apIP, IPAddress(255, 255, 255, 0));
 
@@ -22,11 +22,13 @@ void wifi_Setup() {
   server.begin();
   Serial.println("HTTP server started");
 }
-void wifi_loop() {
+void wifiServer_loop()
+{
   server.handleClient();
   delay(10);
 }
-void handleRoot() {
+void handleRoot()
+{
   char HTML[2000] = "";
   strcat(HTML, "<!DOCTYPE html>");
   strcat(HTML, "<html lang=\"en\">");
@@ -57,34 +59,38 @@ void handleRoot() {
   strcat(HTML, "<h2>הסטוריית לחיצות</h2>");
   strcat(HTML, "<table>");
   strcat(HTML, "<tr>");
-  strcat(HTML, "<th>Pess Resulte</th>");
+  strcat(HTML, "<th>Press Resulte</th>");
   strcat(HTML, "<th>Broke A Record</th>");
   strcat(HTML, "</tr>");
   int tmpCnt = cntToHistoryResults;
   char timeToString[10];
-  do 
+  do
   {
+    if (resultsHistory[tmpCnt]->GetResulte() != -1)
+    {
+      strcat(HTML, "<tr>");
+      strcat(HTML, "<td>");
+      itoa(resultsHistory[tmpCnt]->GetResulte(), timeToString, 10);
+      strcat(HTML, timeToString);
+      strcat(HTML, "</td>");
+      strcat(HTML, "<td>");
+      if (resultsHistory[tmpCnt]->GetBetterResulte())
+        strcat(HTML, "true");
+      else
+        strcat(HTML, "false");
+      strcat(HTML, "</td>");
+      strcat(HTML, "</tr>");
+    }
     tmpCnt = (tmpCnt == 0) ? 10 : tmpCnt;
-    strcat(HTML, "<tr>");
-    strcat(HTML, "<td>");
-    itoa(resultsHistory[tmpCnt]->GetResulte(), timeToString, 10);
-    strcat(HTML, timeToString);
-    strcat(HTML, "</td>");
-    strcat(HTML, "<td>");
-    if (resultsHistory[tmpCnt]->GetBetterResulte())
-      strcat(HTML, "true");
-    else
-      strcat(HTML, "false");
-    strcat(HTML, "</td>");
-    strcat(HTML, "</tr>");
     tmpCnt--;
-  } while (tmpCnt != cntToHistoryResults);  
+  } while (tmpCnt != cntToHistoryResults);
   strcat(HTML, "</table>");
   strcat(HTML, "</body>");
   strcat(HTML, "</html>");
   server.send(200, "text/html", HTML);
 }
-void handleNotFound() {
+void handleNotFound()
+{
   String message = "File Not Found\n\n";
   message += "URI: ";
   message += server.uri();
@@ -94,10 +100,10 @@ void handleNotFound() {
   message += server.args();
   message += "\n";
 
-  for (uint8_t i = 0; i < server.args(); i++) {
+  for (uint8_t i = 0; i < server.args(); i++)
+  {
     message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
   }
 
   server.send(404, "text/plain", message);
 }
-
