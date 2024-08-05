@@ -31,7 +31,8 @@ bool Compare_Data(unsigned long time,unsigned long bestResult){
     return (time < bestResult) ? true : false;
 }
 void Add_To_Press_Results(unsigned long time,bool newRecord){
-    delete resultsHistory[(cntToHistoryResults) % 10]; 
-    resultsHistory[(cntToHistoryResults) % 10] = new ResultData(cntToHistoryResults, time, newRecord);
+    cntToHistoryResults %= 10;
+    delete resultsHistory[cntToHistoryResults]; 
+    resultsHistory[cntToHistoryResults] = new ResultData(cntToHistoryResults, time, newRecord);
     cntToHistoryResults++;
 }
